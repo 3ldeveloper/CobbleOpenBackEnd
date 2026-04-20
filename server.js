@@ -4,13 +4,13 @@
  * Entrega automática via RCON
  */
 
-require('dotenv').config();
+const path       = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const express    = require('express');
 const cors       = require('cors');
 const crypto     = require('crypto');
 const fs         = require('fs');
-const path       = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { MercadoPagoConfig, Payment } = require('mercadopago');
 
@@ -96,7 +96,7 @@ app.post('/api/pix', async (req, res) => {
           identification:  { type: 'CPF', number: cpf.replace(/\D/g, '') },
         },
         metadata: { orderId, nick, productId },
-        notification_url: `${process.env.WEBHOOK_URL}/api/webhook`,
+        notification_url: `${process.env.WEBHOOK_URL || 'https://SEU_BACKEND.onrender.com'}/api/webhook`,
       },
       requestOptions: { idempotencyKey: idempotKey },
     });
@@ -170,7 +170,7 @@ app.post('/api/card', async (req, res) => {
           identification:  { type: 'CPF', number: cpf.replace(/\D/g, '') },
         },
         metadata: { orderId, nick, productId },
-        notification_url: `${process.env.WEBHOOK_URL}/api/webhook`,
+        notification_url: `${process.env.WEBHOOK_URL || 'https://SEU_BACKEND.onrender.com'}/api/webhook`,
       },
       requestOptions: { idempotencyKey: idempotKey },
     });
