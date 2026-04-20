@@ -6,6 +6,7 @@
 const { Rcon } = require('rcon-client');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const QUEUE_FILE = path.join(__dirname, 'delivery_queue.json');
 
