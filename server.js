@@ -96,7 +96,7 @@ app.post('/api/pix', async (req, res) => {
           identification:  { type: 'CPF', number: cpf.replace(/\D/g, '') },
         },
         metadata: { orderId, nick, productId },
-        notification_url: `${process.env.WEBHOOK_URL || 'https://SEU_BACKEND.onrender.com/api/webhook`,
+        notification_url: `${process.env.WEBHOOK_URL}/api/webhook`,
       },
       requestOptions: { idempotencyKey: idempotKey },
     });
@@ -170,7 +170,7 @@ app.post('/api/card', async (req, res) => {
           identification:  { type: 'CPF', number: cpf.replace(/\D/g, '') },
         },
         metadata: { orderId, nick, productId },
-        notification_url: `${process.env.WEBHOOK_URL || 'https://SEU_BACKEND.onrender.com/api/webhook`,
+        notification_url: `${process.env.WEBHOOK_URL}/api/webhook`,
       },
       requestOptions: { idempotencyKey: idempotKey },
     });
